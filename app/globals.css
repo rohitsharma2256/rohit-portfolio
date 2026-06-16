@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+ 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  :root {
+    --bg: #f0f4ff;
+    --fg: #0f172a;
+    --card: #ffffff;
+    --border: #c7d7f7;
+    --muted: #4a5680;
+    --brand: #3b72f0;
+    --brand-light: #6097f8;
+  }
+  .dark {
+    --bg: #080f1e;
+    --fg: #e8edf8;
+    --card: #0d1628;
+    --border: #1a2744;
+    --muted: #6b7a9e;
+    --brand: #6097f8;
+    --brand-light: #93b8fc;
+  }
+ 
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', system-ui, sans-serif;
+    @apply antialiased transition-colors duration-300;
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  ::selection {
+    background: rgba(59, 114, 240, 0.2);
+    color: var(--fg);
+  }
+ 
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+}
+ 
+@layer components {
+  .glass {
+    background: rgba(240, 244, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(199, 215, 247, 0.9);
+  }
+  .dark .glass {
+    background: rgba(13, 22, 40, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(26, 39, 68, 0.8);
+  }
+ 
+  .section-pad {
+    @apply py-20 px-4 sm:px-6 lg:px-8;
+  }
+ 
+  .max-container {
+    @apply max-w-6xl mx-auto;
+  }
+ 
+  .gradient-text {
+    @apply bg-gradient-to-r from-brand-500 to-blue-500 bg-clip-text text-transparent;
+  }
+ 
+  .btn-primary {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white
+           bg-gradient-to-r from-brand-500 to-blue-500
+           hover:from-brand-600 hover:to-blue-600
+           transition-all duration-200 shadow-lg shadow-brand-500/25
+           hover:shadow-brand-500/40 hover:-translate-y-0.5 active:translate-y-0;
+  }
+ 
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold
+           border border-[var(--border)] text-[var(--fg)]
+           hover:border-brand-400 hover:text-brand-500
+           transition-all duration-200 hover:-translate-y-0.5
+           bg-white/60 backdrop-blur-sm;
+  }
+ 
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    @apply rounded-2xl transition-all duration-300 shadow-sm;
+  }
+ 
+  .card-hover {
+    @apply hover:border-brand-400/60 hover:shadow-xl hover:shadow-brand-500/10 hover:-translate-y-1;
+  }
+ 
+  .tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-medium
+           bg-brand-500/10 text-brand-500 border border-brand-500/20;
+  }
+ 
+  .section-label {
+    @apply text-xs font-mono font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3;
+  }
+ 
+  .section-title {
+    @apply text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-4;
+  }
+}
+ 
+/* Animated grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(59, 114, 240, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 114, 240, 0.08) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+ 
+/* Glow orb */
+.glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+ 
+/* Code block styling */
+.code-block {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  font-size: 0.8rem;
+  line-height: 1.7;
+  box-shadow: 0 4px 24px rgba(59, 114, 240, 0.08);
+}
+ 
+/* Terminal cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+ 
+/* Shimmer */
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+.shimmer {
+  background: linear-gradient(90deg, var(--muted) 25%, var(--brand) 50%, var(--muted) 75%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+ 
+/* Timeline connector */
+.timeline-line {
+  position: absolute;
+  left: 19px;
+  top: 40px;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--brand), transparent);
+}
