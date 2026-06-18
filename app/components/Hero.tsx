@@ -135,8 +135,8 @@ export default function Hero() {
                 <div className="rounded-full p-1 bg-white">
                   <div className="relative w-56 h-56 rounded-full overflow-hidden bg-gradient-to-br from-blue-50 to-indigo-100">
                     <Image
-                      src="/bitmoji.webp"
-                      alt="Rohit Sharma Bitmoji"
+                      src="/profile.jpg"
+                      alt="Rohit Sharma Profile"
                       fill
                       className="object-cover object-top scale-110"
                       sizes="(max-width: 768px) 100vw, 224px"
