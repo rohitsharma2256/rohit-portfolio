@@ -4,24 +4,29 @@ import { useRef, useEffect } from 'react'
 
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true })
+  const inView = useInView(ref, { once: true, margin: '0px' })
   const mv = useMotionValue(0)
-  const spring = useSpring(mv, { stiffness: 80, damping: 18 })
+  const spring = useSpring(mv, { stiffness: 60, damping: 15 })
   const display = useTransform(spring, v => `${Math.round(v)}${suffix}`)
-  useEffect(() => { if (inView) mv.set(target) }, [inView, mv, target])
+  useEffect(() => {
+    if (inView) {
+      const timer = setTimeout(() => mv.set(target), 100)
+      return () => clearTimeout(timer)
+    }
+  }, [inView, mv, target])
   return <motion.span ref={ref}>{display}</motion.span>
 }
 
 const stats = [
-  { emoji: '🧠', value: 200, suffix: '+', label: 'DSA Problems Solved',       sub: 'Arrays · Trees · Graphs · DP',        color: 'from-blue-500/20 to-blue-600/5',    border: 'border-blue-500/20',   num: 'text-blue-400'    },
-  { emoji: '🔗', value: 15,  suffix: '+', label: 'REST APIs Built',           sub: 'Across 3 production-style projects',  color: 'from-emerald-500/20 to-emerald-600/5', border: 'border-emerald-500/20', num: 'text-emerald-400' },
-  { emoji: '🏗️', value: 3,   suffix: '',  label: 'Backend Projects',          sub: 'End-to-end, production-ready',        color: 'from-purple-500/20 to-purple-600/5', border: 'border-purple-500/20', num: 'text-purple-400'  },
-  { emoji: '☕', value: 21,  suffix: '',  label: 'Java Version (Latest)',     sub: 'Java 8 → 21 full experience',         color: 'from-orange-500/20 to-orange-600/5', border: 'border-orange-500/20', num: 'text-orange-400'  },
+  { emoji: '🧠', value: 200, suffix: '+', label: 'DSA Problems Solved',   sub: 'Arrays · Trees · Graphs · DP',       color: 'from-blue-500/20 to-blue-600/5',       border: 'border-blue-500/20',    num: 'text-blue-400'    },
+  { emoji: '🔗', value: 15,  suffix: '+', label: 'REST APIs Built',       sub: 'Across 3 production-style projects', color: 'from-emerald-500/20 to-emerald-600/5', border: 'border-emerald-500/20', num: 'text-emerald-400' },
+  { emoji: '🏗️', value: 3,   suffix: '',  label: 'Backend Projects',      sub: 'End-to-end, production-ready',       color: 'from-purple-500/20 to-purple-600/5',   border: 'border-purple-500/20',  num: 'text-purple-400'  },
+  { emoji: '☕', value: 21,  suffix: '',  label: 'Java Version (Latest)', sub: 'Java 8 → 21 full experience',        color: 'from-orange-500/20 to-orange-600/5',   border: 'border-orange-500/20',  num: 'text-orange-400'  },
 ]
 
 export default function Highlights() {
   const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+  const inView = useInView(ref, { once: true, margin: '0px' })
 
   return (
     <section className="section-pad" style={{ background: 'var(--card)' }}>
@@ -59,7 +64,6 @@ export default function Highlights() {
           ))}
         </div>
 
-        {/* Certification row */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}

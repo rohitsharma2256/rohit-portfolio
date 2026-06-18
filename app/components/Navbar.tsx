@@ -90,7 +90,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-[var(--border)]"
+            className="md:hidden glass border-t border-[var(--border)] relative z-50"
           >
             <div className="max-container px-4 py-4 flex flex-col gap-4">
               {links.map(l => (

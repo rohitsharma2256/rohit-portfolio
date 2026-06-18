@@ -19,7 +19,7 @@ const projects = [
       '🐳 Dockerized with Docker Compose · end-to-end Postman tested',
     ],
     stack: ['☕ Java 21', '🌱 Spring Boot', '🐘 PostgreSQL', '🐳 Docker', '🔒 @Transactional', '🕐 Java Time API'],
-    github: 'https://github.com/rohitsharma2256',
+    github: 'https://github.com/rohitsharma2256/global-class-offering-booking-system',
     color: 'blue',
   },
   {
@@ -37,7 +37,7 @@ const projects = [
       '🗄️ PostgreSQL schema across users, tickets & teams · Postman validated',
     ],
     stack: ['☕ Java 21', '🌱 Spring Boot', '🤖 Spring AI', '🐘 PostgreSQL', '📦 DTO Pattern', '🛡️ Global Exception Handling'],
-    github: 'https://github.com/rohitsharma2256',
+    github: 'https://github.com/rohitsharma2256/AI-Ticketing-System',
     color: 'emerald',
   },
   {
@@ -55,7 +55,7 @@ const projects = [
       '🔒 AI path cannot bypass core business logic validations',
     ],
     stack: ['☕ Java', '🌱 Spring Boot', '🐘 PostgreSQL', '🧩 MCP', '🤖 Spring AI', '🖥️ Claude Desktop'],
-    github: 'https://github.com/rohitsharma2256',
+    github: 'https://github.com/rohitsharma2256/NextGenCommerce',
     color: 'purple',
   },
 ]
@@ -140,7 +140,7 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Right — achievements */}
+                {/* Right */}
                 <div className="lg:col-span-2">
                   <h4 className="text-xs font-mono font-bold text-[var(--muted)] uppercase tracking-wider mb-3">🏆 Key Achievements</h4>
                   <ul className="space-y-2.5">

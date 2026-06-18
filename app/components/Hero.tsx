@@ -139,6 +139,7 @@ export default function Hero() {
                       alt="Rohit Sharma Bitmoji"
                       fill
                       className="object-cover object-top scale-110"
+                      sizes="(max-width: 768px) 100vw, 224px"
                       priority
                     />
                   </div>
@@ -158,7 +159,7 @@ export default function Hero() {
                 transition={{ repeat: Infinity, duration: 2.8, ease: 'easeInOut', delay: 0.4 }}
                 className="absolute -bottom-4 -left-4 bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg shadow-purple-500/40 whitespace-nowrap border border-purple-400"
               >
-                🧠 200+ DSA
+                🧠 210+ DSA
               </motion.div>
 
               <motion.div
@@ -166,7 +167,7 @@ export default function Hero() {
                 transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut', delay: 0.8 }}
                 className="absolute top-1/2 -right-10 bg-green-500 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-lg shadow-green-500/40 -translate-y-1/2 whitespace-nowrap border border-green-400"
               >
-                ✅ Hiring
+                ✅Open to Work
               </motion.div>
             </div>
 
