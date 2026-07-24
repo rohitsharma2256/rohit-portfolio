@@ -90,7 +90,7 @@ export default function Hero() {
             </motion.p>
 
             <motion.div {...fadeUp(0.5)} className="flex flex-wrap items-center gap-4 mb-10">
-              <a href="/resume.pdf" download className="btn-primary">
+              <a href="/resume.pdf.pdf" download className="btn-primary">
                 <Download size={17} />
                 📄 Download Resume
               </a>
