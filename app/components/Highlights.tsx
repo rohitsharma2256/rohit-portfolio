@@ -20,7 +20,7 @@ function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
 const stats = [
   { emoji: '🧠', value: 200, suffix: '+', label: 'DSA Problems Solved',   sub: 'Arrays · Trees · Graphs · DP',       color: 'from-blue-500/20 to-blue-600/5',       border: 'border-blue-500/20',    num: 'text-blue-400'    },
   { emoji: '🔗', value: 15,  suffix: '+', label: 'REST APIs Built',       sub: 'Across 3 production-style projects', color: 'from-emerald-500/20 to-emerald-600/5', border: 'border-emerald-500/20', num: 'text-emerald-400' },
-  { emoji: '🏗️', value: 3,   suffix: '',  label: 'Backend Projects',      sub: 'End-to-end, production-ready',       color: 'from-purple-500/20 to-purple-600/5',   border: 'border-purple-500/20',  num: 'text-purple-400'  },
+  { emoji: '🏗️', value: 4,   suffix: '',  label: 'Backend Projects',      sub: 'End-to-end, production-ready',       color: 'from-purple-500/20 to-purple-600/5',   border: 'border-purple-500/20',  num: 'text-purple-400'  },
   { emoji: '☕', value: 21,  suffix: '',  label: 'Java Version (Latest)', sub: 'Java 8 → 21 full experience',        color: 'from-orange-500/20 to-orange-600/5',   border: 'border-orange-500/20',  num: 'text-orange-400'  },
 ]
 

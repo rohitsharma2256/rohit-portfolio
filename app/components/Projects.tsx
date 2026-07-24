@@ -5,6 +5,27 @@ import { Github, ExternalLink } from 'lucide-react'
 
 const projects = [
   {
+    emoji: '🏢',
+    badge: '🌟 Live SaaS Product · AWS Deployed',
+    title: 'ComplianceIQ — AI Payroll Compliance SaaS for CA Firms',
+    tagline: 'Turned a 3-hour Excel workflow into a 2-minute AI-powered compliance check.',
+    problem: 'CA firms spend 2–3 hours manually checking Indian payroll compliance (EPF, ESI, TDS, PT) across Excel sheets. ComplianceIQ automates this entirely — a live multi-tenant SaaS product deployed on AWS.',
+    architecture: 'Multi-tenant Spring Boot backend · Agentic AI assistant via Spring AI + MCP · RAG pipeline on PGVector · Nginx-proxied React frontend · Docker multi-stage builds · JWT + BCrypt security.',
+    achievements: [
+      '🚀 30+ REST APIs automating EPF, ESI, TDS, PT compliance checks',
+      '🤖 Agentic AI with 6 MCP tools — runs live compliance checks autonomously',
+      '📚 RAG pipeline (PGVector, MiniLM embeddings) — citation-backed law answers',
+      '⚡ New compliance rules live for all tenants in seconds — zero redeployment',
+      '🔒 JWT + BCrypt + per-IP rate limiting (Bucket4j) + tenant-scoped isolation',
+      '🐳 Docker multi-stage builds (450MB → 250MB) · stable 24/7 AWS EC2 uptime',
+    ],
+    stack: ['☕ Java 21', '🌱 Spring Boot', '🤖 Spring AI', '🧩 MCP', '📚 RAG · PGVector', '🐘 PostgreSQL', '☁️ AWS EC2', '🐳 Docker', '⚛️ React'],
+    github: 'https://github.com/rohitsharma2256/complianceiq-showcase',
+    demo: 'http://13.207.190.195:3000',
+    hasDemo: true,
+    color: 'gold',
+  },
+  {
     emoji: '📅',
     badge: '🔒 Concurrency & Transactions',
     title: 'Global Class Offering Booking System',
@@ -20,6 +41,8 @@ const projects = [
     ],
     stack: ['☕ Java 21', '🌱 Spring Boot', '🐘 PostgreSQL', '🐳 Docker', '🔒 @Transactional', '🕐 Java Time API'],
     github: 'https://github.com/rohitsharma2256/global-class-offering-booking-system',
+    demo: '',
+    hasDemo: false,
     color: 'blue',
   },
   {
@@ -38,6 +61,8 @@ const projects = [
     ],
     stack: ['☕ Java 21', '🌱 Spring Boot', '🤖 Spring AI', '🐘 PostgreSQL', '📦 DTO Pattern', '🛡️ Global Exception Handling'],
     github: 'https://github.com/rohitsharma2256/AI-Ticketing-System',
+    demo: '',
+    hasDemo: false,
     color: 'emerald',
   },
   {
@@ -56,27 +81,32 @@ const projects = [
     ],
     stack: ['☕ Java', '🌱 Spring Boot', '🐘 PostgreSQL', '🧩 MCP', '🤖 Spring AI', '🖥️ Claude Desktop'],
     github: 'https://github.com/rohitsharma2256/NextGenCommerce',
+    demo: '',
+    hasDemo: false,
     color: 'purple',
   },
 ]
 
 const colorBorder: Record<string, string> = {
+  gold:    'border-yellow-500/50',
   blue:    'border-blue-500/40',
   emerald: 'border-emerald-500/40',
   purple:  'border-purple-500/40',
 }
 const colorGlow: Record<string, string> = {
+  gold:    'hover:shadow-yellow-500/15',
   blue:    'hover:shadow-blue-500/10',
   emerald: 'hover:shadow-emerald-500/10',
   purple:  'hover:shadow-purple-500/10',
 }
 const colorAccent: Record<string, string> = {
+  gold:    'text-yellow-400 bg-yellow-500/10 border-yellow-500/30',
   blue:    'text-blue-400 bg-blue-500/10 border-blue-500/30',
   emerald: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30',
   purple:  'text-purple-400 bg-purple-500/10 border-purple-500/30',
 }
 const dotColor: Record<string, string> = {
-  blue: 'bg-blue-400', emerald: 'bg-emerald-400', purple: 'bg-purple-400',
+  gold: 'bg-yellow-400', blue: 'bg-blue-400', emerald: 'bg-emerald-400', purple: 'bg-purple-400',
 }
 
 export default function Projects() {
@@ -95,7 +125,7 @@ export default function Projects() {
           <p className="section-label">🚀 Featured Projects</p>
           <h2 className="section-title">Systems built, problems solved 🏗️</h2>
           <p className="text-[var(--muted)] max-w-xl mx-auto text-sm leading-relaxed">
-            Each project was scoped around a <strong className="text-[var(--fg)]">real engineering challenge</strong> — concurrency 🔒, AI integration 🤖, or agentic workflows 🕹️ — not just a tech demo.
+            From a <strong className="text-[var(--fg)]">live AWS-deployed SaaS product</strong> to concurrency-safe backends and agentic AI systems — each project solves a real engineering challenge.
           </p>
         </motion.div>
 
@@ -106,8 +136,15 @@ export default function Projects() {
               initial={{ opacity: 0, y: 32 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.15 * i }}
-              className={`card border p-6 sm:p-8 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 ${colorBorder[p.color]} ${colorGlow[p.color]}`}
+              className={`card border p-6 sm:p-8 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 ${colorBorder[p.color]} ${colorGlow[p.color]} ${p.color === 'gold' ? 'relative overflow-hidden' : ''}`}
             >
+              {/* Featured badge for ComplianceIQ */}
+              {p.color === 'gold' && (
+                <div className="absolute top-0 right-0 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">
+                  ⭐ FEATURED · LIVE PRODUCT
+                </div>
+              )}
+
               {/* Header */}
               <div className="flex items-start gap-5 mb-6">
                 <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center text-3xl flex-shrink-0 ${colorAccent[p.color]}`}>
@@ -151,14 +188,21 @@ export default function Projects() {
                       </li>
                     ))}
                   </ul>
-                  <div className="mt-6 flex gap-3">
+                  <div className="mt-6 flex gap-3 flex-wrap">
                     <a href={p.github} target="_blank" rel="noopener noreferrer"
                        className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[var(--border)] text-[var(--muted)] hover:text-[var(--fg)] hover:border-brand-400 transition-all duration-200 text-sm font-medium">
                       <Github size={15} /> 💻 Source Code
                     </a>
-                    <span className="flex items-center gap-2 px-4 py-2 rounded-xl border border-dashed border-[var(--border)] text-[var(--muted)] text-sm opacity-50 cursor-not-allowed">
-                      <ExternalLink size={14} /> Demo Soon
-                    </span>
+                    {p.hasDemo ? (
+                      <a href={p.demo} target="_blank" rel="noopener noreferrer"
+                         className="flex items-center gap-2 px-4 py-2 rounded-xl border border-yellow-500/40 text-yellow-400 hover:bg-yellow-500/10 transition-all duration-200 text-sm font-medium">
+                        <ExternalLink size={14} /> 🌐 Live Demo
+                      </a>
+                    ) : (
+                      <span className="flex items-center gap-2 px-4 py-2 rounded-xl border border-dashed border-[var(--border)] text-[var(--muted)] text-sm opacity-50 cursor-not-allowed">
+                        <ExternalLink size={14} /> Demo Soon
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>
