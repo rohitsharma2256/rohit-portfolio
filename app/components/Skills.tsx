@@ -2,6 +2,8 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
+const easeOut = [0.16, 1, 0.3, 1] as const
+
 const groups = [
   {
     emoji: '⚙️', label: 'Backend Engineering', color: 'blue',
@@ -13,7 +15,7 @@ const groups = [
   },
   {
     emoji: '☁️', label: 'Cloud & DevOps', color: 'purple',
-    skills: ['☁️ AWS (Beanstalk · RDS · ECS)', '🐳 Docker', '🐙 Docker Compose', '🐧 Linux', '🌿 Git', '⚡ GitHub Actions', '📮 Postman'],
+    skills: ['☁️ AWS (EC2 Beanstalk · RDS · ECS)', '🐳 Docker', '🐙 Docker Compose', '🐧 Linux', '🌿 Git', '⚡ GitHub Actions', '📮 Postman'],
   },
   {
     emoji: '🤖', label: 'AI Integration', color: 'orange',
@@ -45,12 +47,14 @@ export default function Skills() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="skills" className="section-pad" style={{ background: 'var(--card)' }}>
-      <div className="max-container" ref={ref}>
+    <section id="skills" className="section-pad relative overflow-hidden" style={{ background: 'var(--card)' }}>
+      <div className="ambient-orb w-[450px] h-[450px] bg-purple-500/5 top-0 right-0 pointer-events-none" style={{ animationDelay: '3s' }} />
+
+      <div className="max-container relative" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: easeOut }}
           className="text-center mb-14"
         >
           <p className="section-label">🛠️ Technical Skills</p>
@@ -64,9 +68,9 @@ export default function Skills() {
           {groups.map((g, i) => (
             <motion.div
               key={g.label}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 28 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 * i }}
+              transition={{ duration: 0.7, delay: 0.1 + i * 0.08, ease: easeOut }}
               className="card card-hover p-6 group"
             >
               <div className="flex items-center gap-3 mb-5">

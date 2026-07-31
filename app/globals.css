@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
- 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
- 
+
 @layer base {
   :root {
     --bg: #f0f4ff;
@@ -23,26 +23,26 @@
     --brand: #6097f8;
     --brand-light: #93b8fc;
   }
- 
+
   body {
     background-color: var(--bg);
     color: var(--fg);
     font-family: 'Inter', system-ui, sans-serif;
     @apply antialiased transition-colors duration-300;
   }
- 
+
   html { scroll-behavior: smooth; }
- 
+
   ::selection {
     background: rgba(59, 114, 240, 0.2);
     color: var(--fg);
   }
- 
+
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 }
- 
+
 @layer components {
   .glass {
     background: rgba(240, 244, 255, 0.85);
@@ -51,72 +51,98 @@
     border: 1px solid rgba(199, 215, 247, 0.9);
   }
   .dark .glass {
-    background: rgba(13, 22, 40, 0.7);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(26, 39, 68, 0.8);
+    background: rgba(13, 22, 40, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(96, 151, 248, 0.12);
   }
- 
+
+  /* Zowork-style glass card — subtle border glow, deeper blur */
+  .glass-card {
+    background: rgba(13, 22, 40, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(96, 151, 248, 0.1);
+    transition: border-color 0.4s ease, background 0.4s ease, transform 0.4s ease;
+  }
+  .glass-card:hover {
+    border-color: rgba(96, 151, 248, 0.35);
+    background: rgba(13, 22, 40, 0.6);
+  }
+  .light .glass-card, :root .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(59, 114, 240, 0.12);
+  }
+  .dark .glass-card {
+    background: rgba(13, 22, 40, 0.4);
+    border: 1px solid rgba(96, 151, 248, 0.1);
+  }
+
   .section-pad {
     @apply py-20 px-4 sm:px-6 lg:px-8;
   }
- 
+
   .max-container {
     @apply max-w-6xl mx-auto;
   }
- 
+
   .gradient-text {
-    @apply bg-gradient-to-r from-brand-500 to-blue-500 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-brand-400 to-blue-400 bg-clip-text text-transparent;
   }
- 
+
   .btn-primary {
     @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-white
            bg-gradient-to-r from-brand-500 to-blue-500
            hover:from-brand-600 hover:to-blue-600
-           transition-all duration-200 shadow-lg shadow-brand-500/25
+           transition-all duration-200 shadow-lg shadow-brand-500/20
            hover:shadow-brand-500/40 hover:-translate-y-0.5 active:translate-y-0;
   }
- 
+
   .btn-ghost {
     @apply inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold
            border border-[var(--border)] text-[var(--fg)]
-           hover:border-brand-400 hover:text-brand-500
-           transition-all duration-200 hover:-translate-y-0.5
-           bg-white/60 backdrop-blur-sm;
+           hover:border-brand-400 hover:text-brand-400
+           transition-all duration-200 hover:-translate-y-0.5;
   }
- 
+
   .card {
     background: var(--card);
     border: 1px solid var(--border);
-    @apply rounded-2xl transition-all duration-300 shadow-sm;
+    @apply rounded-2xl transition-all duration-300;
   }
- 
+
   .card-hover {
-    @apply hover:border-brand-400/60 hover:shadow-xl hover:shadow-brand-500/10 hover:-translate-y-1;
+    @apply hover:border-brand-400/50 hover:shadow-xl hover:shadow-brand-500/10 hover:-translate-y-1;
   }
- 
+
   .tag {
     @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-medium
-           bg-brand-500/10 text-brand-500 border border-brand-500/20;
+           bg-brand-500/10 text-brand-400 border border-brand-500/20;
   }
- 
+
   .section-label {
-    @apply text-xs font-mono font-semibold tracking-[0.2em] uppercase text-brand-500 mb-3;
+    @apply text-xs font-mono font-semibold tracking-[0.2em] uppercase text-brand-400 mb-3;
   }
- 
+
   .section-title {
     @apply text-3xl sm:text-4xl font-bold text-[var(--fg)] mb-4;
   }
+
+  /* Zowork-style eyebrow badge with pulsing dot */
+  .eyebrow-badge {
+    @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-mono
+           uppercase tracking-[0.15em] border border-brand-500/20 bg-brand-500/5 text-[var(--muted)];
+  }
 }
- 
+
 /* Animated grid background */
 .grid-bg {
   background-image:
-    linear-gradient(rgba(59, 114, 240, 0.08) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 114, 240, 0.08) 1px, transparent 1px);
+    linear-gradient(rgba(59, 114, 240, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 114, 240, 0.04) 1px, transparent 1px);
   background-size: 60px 60px;
 }
- 
+
 /* Glow orb */
 .glow-orb {
   position: absolute;
@@ -124,7 +150,33 @@
   filter: blur(80px);
   pointer-events: none;
 }
- 
+
+/* Zowork-style slow-drifting ambient orb */
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  animation: driftOrb 18s ease-in-out infinite;
+}
+@keyframes driftOrb {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%      { transform: translate(40px, -30px) scale(1.08); }
+  66%      { transform: translate(-30px, 20px) scale(0.95); }
+}
+
+/* Particle dust field (Zowork logo-style scatter, used sparingly) */
+.dust-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(96, 151, 248, 0.35) 1px, transparent 1px);
+  background-size: 22px 22px;
+  mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(circle at center, black 0%, transparent 70%);
+  opacity: 0.5;
+}
+
 /* Code block styling */
 .code-block {
   font-family: 'JetBrains Mono', 'Fira Code', monospace;
@@ -134,18 +186,17 @@
   padding: 1.25rem 1.5rem;
   font-size: 0.8rem;
   line-height: 1.7;
-  box-shadow: 0 4px 24px rgba(59, 114, 240, 0.08);
 }
- 
+
 /* Terminal cursor blink */
 @keyframes blink {
   0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+  50% { opacity: 0; }
 }
 .cursor-blink {
   animation: blink 1s step-end infinite;
 }
- 
+
 /* Shimmer */
 @keyframes shimmer {
   0%   { background-position: -200% center; }
@@ -159,7 +210,7 @@
   -webkit-text-fill-color: transparent;
   animation: shimmer 3s linear infinite;
 }
- 
+
 /* Timeline connector */
 .timeline-line {
   position: absolute;
@@ -168,4 +219,19 @@
   bottom: 0;
   width: 2px;
   background: linear-gradient(to bottom, var(--brand), transparent);
+}
+
+/* Zowork-style slow fade-up on load (no scroll trigger needed, used via Framer Motion in components) */
+@keyframes softFadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.soft-fade-up {
+  animation: softFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Divider line with glow, Zowork nav style */
+.glow-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(96, 151, 248, 0.4), transparent);
 }

@@ -2,6 +2,8 @@
 import { motion, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 
+const easeOut = [0.16, 1, 0.3, 1] as const
+
 function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
   const ref = useRef<HTMLSpanElement>(null)
   const inView = useInView(ref, { once: true, margin: '0px' })
@@ -18,8 +20,8 @@ function Counter({ target, suffix = '' }: { target: number; suffix?: string }) {
 }
 
 const stats = [
-  { emoji: '🧠', value: 200, suffix: '+', label: 'DSA Problems Solved',   sub: 'Arrays · Trees · Graphs · DP',       color: 'from-blue-500/20 to-blue-600/5',       border: 'border-blue-500/20',    num: 'text-blue-400'    },
-  { emoji: '🔗', value: 15,  suffix: '+', label: 'REST APIs Built',       sub: 'Across 3 production-style projects', color: 'from-emerald-500/20 to-emerald-600/5', border: 'border-emerald-500/20', num: 'text-emerald-400' },
+  { emoji: '🧠', value: 210, suffix: '+', label: 'DSA Problems Solved',   sub: 'Arrays · Trees · Graphs · DP',       color: 'from-blue-500/20 to-blue-600/5',       border: 'border-blue-500/20',    num: 'text-blue-400'    },
+  { emoji: '🔗', value: 15,  suffix: '+', label: 'REST APIs Built',       sub: 'Across 4 production-style projects', color: 'from-emerald-500/20 to-emerald-600/5', border: 'border-emerald-500/20', num: 'text-emerald-400' },
   { emoji: '🏗️', value: 4,   suffix: '',  label: 'Backend Projects',      sub: 'End-to-end, production-ready',       color: 'from-purple-500/20 to-purple-600/5',   border: 'border-purple-500/20',  num: 'text-purple-400'  },
   { emoji: '☕', value: 21,  suffix: '',  label: 'Java Version (Latest)', sub: 'Java 8 → 21 full experience',        color: 'from-orange-500/20 to-orange-600/5',   border: 'border-orange-500/20',  num: 'text-orange-400'  },
 ]
@@ -29,12 +31,14 @@ export default function Highlights() {
   const inView = useInView(ref, { once: true, margin: '0px' })
 
   return (
-    <section className="section-pad" style={{ background: 'var(--card)' }}>
-      <div className="max-container" ref={ref}>
+    <section className="section-pad relative overflow-hidden" style={{ background: 'var(--card)' }}>
+      <div className="ambient-orb w-[420px] h-[420px] bg-orange-500/5 top-10 right-10 pointer-events-none" style={{ animationDelay: '2s' }} />
+
+      <div className="max-container relative" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: easeOut }}
           className="text-center mb-12"
         >
           <p className="section-label">⚡ Engineering Highlights</p>
@@ -46,9 +50,9 @@ export default function Highlights() {
           {stats.map((s, i) => (
             <motion.div
               key={s.label}
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 * i }}
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={inView ? { opacity: 1, scale: 1, y: 0 } : {}}
+              transition={{ duration: 0.7, delay: 0.1 + i * 0.1, ease: easeOut }}
               className={`relative card card-hover p-6 text-center group overflow-hidden border ${s.border}`}
             >
               <div className={`absolute inset-0 bg-gradient-to-br ${s.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
@@ -67,7 +71,7 @@ export default function Highlights() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.5 }}
+          transition={{ duration: 0.7, delay: 0.6, ease: easeOut }}
           className="mt-8 flex flex-wrap justify-center gap-4"
         >
           {[

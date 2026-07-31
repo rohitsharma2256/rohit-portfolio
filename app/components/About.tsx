@@ -2,18 +2,20 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 
+const easeOut = [0.16, 1, 0.3, 1] as const
+
 const pillars = [
-  { emoji: '🔗', title: 'API Design',           color: 'from-blue-500/20 to-blue-600/5',      border: 'border-blue-500/30',    text: 'text-blue-400',    desc: 'REST APIs with clean contracts, proper HTTP semantics, and global exception handling that production systems depend on.' },
-  { emoji: '🗄️', title: 'Database Engineering',  color: 'from-emerald-500/20 to-emerald-600/5', border: 'border-emerald-500/30', text: 'text-emerald-400', desc: 'Normalized PostgreSQL schemas, efficient JPA queries, and transaction-safe concurrent operations.' },
-  { emoji: '⚙️', title: 'Systems Design',         color: 'from-purple-500/20 to-purple-600/5',  border: 'border-purple-500/30',  text: 'text-purple-400',  desc: 'Layered architecture, service abstraction, and separation of concerns — scalability and reliability baked in from day one.' },
-  { emoji: '🤖', title: 'AI Integration',          color: 'from-orange-500/20 to-orange-600/5',  border: 'border-orange-500/30',  text: 'text-orange-400',  desc: 'Spring AI and MCP to let LLM agents safely drive real backend operations — designing full agentic workflows.' },
+  { emoji: '🔗', title: 'API Design',          color: 'from-blue-500/20 to-blue-600/5',      border: 'border-blue-500/30',    text: 'text-blue-400',    desc: 'REST APIs with clean contracts, proper HTTP semantics, and global exception handling that production systems depend on.' },
+  { emoji: '🗄️', title: 'Database Engineering', color: 'from-emerald-500/20 to-emerald-600/5', border: 'border-emerald-500/30', text: 'text-emerald-400', desc: 'Normalized PostgreSQL schemas, efficient JPA queries, and transaction-safe concurrent operations.' },
+  { emoji: '⚙️', title: 'Systems Design',        color: 'from-purple-500/20 to-purple-600/5',  border: 'border-purple-500/30',  text: 'text-purple-400',  desc: 'Layered architecture, service abstraction, and separation of concerns — scalability and reliability baked in from day one.' },
+  { emoji: '🤖', title: 'AI Integration',         color: 'from-orange-500/20 to-orange-600/5',  border: 'border-orange-500/30',  text: 'text-orange-400',  desc: 'Spring AI and MCP to let LLM agents safely drive real backend operations — designing full agentic workflows.' },
 ]
 
 const funFacts = [
   { emoji: '☕', text: 'Powered by coffee & Java' },
   { emoji: '🧠', text: '200+ LeetCode problems solved' },
   { emoji: '🎯', text: 'Clean code enthusiast' },
-  { emoji: '🏗️', text: '3 production-style projects built' },
+  { emoji: '🏗️', text: '4 production-style projects built' },
   { emoji: '🚀', text: 'Always learning new tech' },
   { emoji: '🔒', text: 'Concurrency & transactions nerd' },
 ]
@@ -23,15 +25,16 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="about" className="section-pad">
-      <div className="max-container" ref={ref}>
+    <section id="about" className="section-pad relative overflow-hidden">
+      <div className="ambient-orb w-[400px] h-[400px] bg-brand-500/6 top-1/4 -left-32 pointer-events-none" />
+
+      <div className="max-container relative" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: easeOut }}
           className="grid lg:grid-cols-2 gap-16 items-start"
         >
-          {/* LEFT */}
           <div>
             <p className="section-label">👨‍💻 About Me</p>
             <h2 className="section-title">
@@ -62,30 +65,34 @@ export default function About() {
               ))}
             </div>
 
-            {/* Fun facts */}
             <div className="mt-8">
               <p className="text-xs font-mono font-semibold text-[var(--muted)] uppercase tracking-wider mb-3">⚡ Quick facts</p>
               <div className="grid grid-cols-2 gap-2">
-                {funFacts.map(f => (
-                  <div key={f.text} className="flex items-center gap-2 px-3 py-2 rounded-lg bg-brand-500/5 border border-brand-500/10 text-xs text-[var(--muted)]">
+                {funFacts.map((f, i) => (
+                  <motion.div
+                    key={f.text}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.06, ease: easeOut }}
+                    className="flex items-center gap-2 px-3 py-2 rounded-lg glass-card text-xs text-[var(--muted)]"
+                  >
                     <span className="text-base">{f.emoji}</span>
                     <span>{f.text}</span>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* RIGHT — pillars */}
           <div>
             <p className="text-xs font-mono font-semibold text-[var(--muted)] uppercase tracking-wider mb-4">🏗️ What I specialise in</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {pillars.map((p, i) => (
                 <motion.div
                   key={p.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 24 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.1 * i }}
+                  transition={{ duration: 0.7, delay: 0.15 + i * 0.1, ease: easeOut }}
                   className={`relative card card-hover p-5 group cursor-default overflow-hidden border ${p.border}`}
                 >
                   <div className={`absolute inset-0 bg-gradient-to-br ${p.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
@@ -98,11 +105,10 @@ export default function About() {
               ))}
             </div>
 
-            {/* Education card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.7, delay: 0.6, ease: easeOut }}
               className="mt-4 card p-5 flex items-center gap-4"
             >
               <div className="text-4xl">🎓</div>

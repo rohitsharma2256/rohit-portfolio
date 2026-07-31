@@ -3,6 +3,8 @@ import { useState, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { Send, CheckCircle2, AlertCircle } from 'lucide-react'
 
+const easeOut = [0.16, 1, 0.3, 1] as const
+
 const contactLinks = [
   { emoji: '📧', label: 'Email',    href: 'mailto:rohitsharma250602@gmail.com', value: 'rohitsharma250602@gmail.com' },
   { emoji: '📱', label: 'Phone',    href: 'tel:+919370256399',                  value: '+91 93702 56399' },
@@ -28,12 +30,14 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="section-pad">
-      <div className="max-container" ref={ref}>
+    <section id="contact" className="section-pad relative overflow-hidden">
+      <div className="ambient-orb w-[450px] h-[450px] bg-brand-500/8 -bottom-32 left-1/2 -translate-x-1/2 pointer-events-none" style={{ animationDelay: '1s' }} />
+
+      <div className="max-container relative" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: easeOut }}
           className="text-center mb-14"
         >
           <p className="section-label">📬 Contact</p>
@@ -46,11 +50,10 @@ export default function Contact() {
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
-          {/* Left — info */}
           <motion.div
-            initial={{ opacity: 0, x: -24 }}
+            initial={{ opacity: 0, x: -28 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: easeOut }}
             className="lg:col-span-2 space-y-4"
           >
             <div className="card p-6">
@@ -88,11 +91,10 @@ export default function Contact() {
             </div>
           </motion.div>
 
-          {/* Right — form */}
           <motion.div
-            initial={{ opacity: 0, x: 24 }}
+            initial={{ opacity: 0, x: 28 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: easeOut }}
             className="lg:col-span-3"
           >
             {status === 'sent' ? (

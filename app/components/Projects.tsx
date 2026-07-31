@@ -3,6 +3,8 @@ import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
 import { Github, ExternalLink } from 'lucide-react'
 
+const easeOut = [0.16, 1, 0.3, 1] as const
+
 const projects = [
   {
     emoji: '🏢',
@@ -21,7 +23,7 @@ const projects = [
     ],
     stack: ['☕ Java 21', '🌱 Spring Boot', '🤖 Spring AI', '🧩 MCP', '📚 RAG · PGVector', '🐘 PostgreSQL', '☁️ AWS EC2', '🐳 Docker', '⚛️ React'],
     github: 'https://github.com/rohitsharma2256/complianceiq-showcase',
-    demo: 'http://13.207.190.195:3000',
+    demo: 'http://13.207.190.195:3000/login',
     hasDemo: true,
     color: 'gold',
   },
@@ -114,12 +116,14 @@ export default function Projects() {
   const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section id="projects" className="section-pad">
-      <div className="max-container" ref={ref}>
+    <section id="projects" className="section-pad relative overflow-hidden">
+      <div className="ambient-orb w-[500px] h-[500px] bg-brand-500/6 bottom-0 -left-40 pointer-events-none" style={{ animationDelay: '6s' }} />
+
+      <div className="max-container relative" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.8, ease: easeOut }}
           className="text-center mb-14"
         >
           <p className="section-label">🚀 Featured Projects</p>
@@ -133,19 +137,17 @@ export default function Projects() {
           {projects.map((p, i) => (
             <motion.div
               key={p.title}
-              initial={{ opacity: 0, y: 32 }}
+              initial={{ opacity: 0, y: 36 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 * i }}
-              className={`card border p-6 sm:p-8 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 ${colorBorder[p.color]} ${colorGlow[p.color]} ${p.color === 'gold' ? 'relative overflow-hidden' : ''}`}
+              transition={{ duration: 0.8, delay: 0.1 + i * 0.12, ease: easeOut }}
+              className={`card border p-6 sm:p-8 hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-500 ${colorBorder[p.color]} ${colorGlow[p.color]} ${p.color === 'gold' ? 'relative overflow-hidden' : ''}`}
             >
-              {/* Featured badge for ComplianceIQ */}
               {p.color === 'gold' && (
                 <div className="absolute top-0 right-0 bg-gradient-to-r from-yellow-500 to-orange-500 text-white text-xs font-bold px-4 py-1.5 rounded-bl-xl">
                   ⭐ FEATURED · LIVE PRODUCT
                 </div>
               )}
 
-              {/* Header */}
               <div className="flex items-start gap-5 mb-6">
                 <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center text-3xl flex-shrink-0 ${colorAccent[p.color]}`}>
                   {p.emoji}
@@ -160,7 +162,6 @@ export default function Projects() {
               </div>
 
               <div className="grid lg:grid-cols-5 gap-8">
-                {/* Left */}
                 <div className="lg:col-span-3 space-y-5">
                   <div>
                     <h4 className="text-xs font-mono font-bold text-[var(--muted)] uppercase tracking-wider mb-2">🔍 Problem</h4>
@@ -177,7 +178,6 @@ export default function Projects() {
                   </div>
                 </div>
 
-                {/* Right */}
                 <div className="lg:col-span-2">
                   <h4 className="text-xs font-mono font-bold text-[var(--muted)] uppercase tracking-wider mb-3">🏆 Key Achievements</h4>
                   <ul className="space-y-2.5">

@@ -31,42 +31,41 @@ export default function Navbar() {
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         scrolled ? 'glass border-b border-[var(--border)]' : 'bg-transparent'
       }`}
     >
       <div className="max-container flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
-
         <a href="#" className="font-mono font-bold text-base">
           <span className="text-[var(--fg)]">☕ rohit</span>
           <span className="text-brand-400">.dev</span>
         </a>
 
         <div className="hidden md:flex items-center gap-7">
-          {links.map(l => (
-            <a
+          {links.map((l, i) => (
+            <motion.a
               key={l.href}
               href={l.href}
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.05 }}
               className="text-xs text-[var(--muted)] hover:text-[var(--fg)] transition-colors duration-200 font-medium"
             >
               {l.label}
-            </a>
+            </motion.a>
           ))}
         </div>
 
         <div className="hidden md:flex items-center gap-3">
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-lg text-[var(--muted)] hover:text-[var(--fg)] hover:bg-[var(--border)] transition-all duration-200"
             aria-label="Toggle theme"
+            className="p-2 rounded-lg text-[var(--muted)] hover:text-[var(--fg)] hover:bg-[var(--border)] transition-all duration-200"
           >
             {dark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          <a
-            href="mailto:rohitsharma250602@gmail.com"
-            className="btn-primary text-sm px-4 py-2"
-          >
+          <a href="mailto:rohitsharma250602@gmail.com" className="btn-primary text-sm px-4 py-2">
             🤝 Hire Me
           </a>
         </div>
@@ -75,10 +74,7 @@ export default function Navbar() {
           <button onClick={toggleTheme} className="p-2 text-[var(--muted)]">
             {dark ? <Sun size={18} /> : <Moon size={18} />}
           </button>
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="p-2 text-[var(--muted)]"
-          >
+          <button onClick={() => setMenuOpen(!menuOpen)} className="p-2 text-[var(--muted)]">
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
@@ -90,6 +86,7 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
             className="md:hidden glass border-t border-[var(--border)] relative z-50"
           >
             <div className="max-container px-4 py-4 flex flex-col gap-4">
@@ -103,10 +100,7 @@ export default function Navbar() {
                   {l.label}
                 </a>
               ))}
-              <a
-                href="mailto:rohitsharma250602@gmail.com"
-                className="btn-primary text-sm w-fit"
-              >
+              <a href="mailto:rohitsharma250602@gmail.com" className="btn-primary text-sm w-fit">
                 🤝 Hire Me
               </a>
             </div>
