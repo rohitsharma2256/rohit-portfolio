@@ -15,11 +15,11 @@
     --brand-light: #6097f8;
   }
   .dark {
-    --bg: #080f1e;
-    --fg: #e8edf8;
-    --card: #0d1628;
-    --border: #1a2744;
-    --muted: #6b7a9e;
+    --bg: #0a0b12;
+    --fg: #eceef2;
+    --card: #0e0f18;
+    --border: #1c1d29;
+    --muted: #8b8b9a;
     --brand: #6097f8;
     --brand-light: #93b8fc;
   }
@@ -51,10 +51,10 @@
     border: 1px solid rgba(199, 215, 247, 0.9);
   }
   .dark .glass {
-    background: rgba(13, 22, 40, 0.6);
+    background: rgba(10, 10, 16, 0.65);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(96, 151, 248, 0.12);
+    border: 1px solid rgba(96, 151, 248, 0.1);
   }
 
   /* Zowork-style glass card — subtle border glow, deeper blur */
@@ -74,7 +74,7 @@
     border: 1px solid rgba(59, 114, 240, 0.12);
   }
   .dark .glass-card {
-    background: rgba(13, 22, 40, 0.4);
+    background: rgba(10, 10, 16, 0.45);
     border: 1px solid rgba(96, 151, 248, 0.1);
   }
 

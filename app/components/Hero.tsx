@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { Download, ArrowRight, Mail, Github, Linkedin, Terminal, MapPin, Coffee } from 'lucide-react'
 import Image from 'next/image'
+import ParticleMark from './ParticleMark'
 
 const TITLES = [
   '☕ Java Backend Developer',
@@ -130,8 +131,13 @@ export default function Hero() {
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col items-center gap-6"
+            className="relative flex flex-col items-center gap-6"
           >
+            {/* Zowork-style particle dust mark, drifting behind the photo */}
+            <div className="absolute -top-16 -right-10 hidden lg:block opacity-70">
+              <ParticleMark glyph="☕" size={340} />
+            </div>
+
             <motion.div
               className="relative"
               animate={{ y: [0, -10, 0] }}
