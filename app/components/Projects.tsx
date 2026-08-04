@@ -23,7 +23,7 @@ const projects = [
     ],
     stack: ['☕ Java 21', '🌱 Spring Boot', '🤖 Spring AI', '🧩 MCP', '📚 RAG · PGVector', '🐘 PostgreSQL', '☁️ AWS EC2', '🐳 Docker', '⚛️ React'],
     github: 'https://github.com/rohitsharma2256/complianceiq-showcase',
-    demo: 'http://13.207.190.195:3000/login',
+    demo: 'https://compliance-iq.co.in',
     hasDemo: true,
     color: 'gold',
   },
